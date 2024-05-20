@@ -17,7 +17,7 @@ public class LionTests{
 
     @Test
     public void testGetKittens() throws Exception {
-        Lion lion = new Lion("Самец");
+        Lion lion = new Lion("Самец", feline);
         Mockito.when(feline.getKittens()).thenReturn(1);
         int kittens = lion.getKittens();
         Assert.assertEquals(1, kittens);
@@ -25,16 +25,16 @@ public class LionTests{
 
     @Test
     public void testDoesHaveMane() throws Exception {
-        Lion lion1 = new Lion("Самка");
+        Lion lion1 = new Lion("Самка", feline);
         Assert.assertFalse(lion1.doesHaveMane());
 
-        Lion lion2 = new Lion("Самец");
+        Lion lion2 = new Lion("Самец", feline);
         Assert.assertTrue(lion2.doesHaveMane());
     }
 
     @Test
     public void testGetFood() throws Exception {
-        Lion lion = new Lion("Самец");
+        Lion lion = new Lion("Самец", feline);
         Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List<String> food = lion.getFood();
         Assert.assertEquals("Животные", food.get(0));
@@ -46,7 +46,7 @@ public class LionTests{
     public void testConstructorWithInvalidParameters() {
         String message= "";
         try {
-            new Lion("Неизвестное животное");
+            new Lion("Неизвестное животное", feline);
         } catch (Exception e) {
             message = e.getMessage();
         }
